@@ -1,0 +1,33 @@
+esphome:
+  name: light-strip-controller
+  friendly_name: light strip Controller
+
+esp32:
+  board: esp32-c3-devkitm-1
+  variant: esp32c3
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  power_save_mode: NONE
+  output_power: 17dB
+  manual_ip:
+    static_ip: 192.168.0.11  
+    gateway: 192.168.0.1     
+    subnet: 255.255.255.0
+
+switch:
+  - platform: gpio
+    pin: 0
+    name: "Light strip"
+    id: light_strip
+    restore_mode: ALWAYS_OFF
